@@ -11,7 +11,7 @@ public class Application {
 
     @GetMapping("/book")
     public String home(){
-        return "Welcome to Spring Boot on AWS EC2 Instance";
+        return "Welcome to Spring Boot on AWS EC2 Instance TestEnv3";
     }
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
