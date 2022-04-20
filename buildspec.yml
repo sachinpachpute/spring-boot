@@ -10,5 +10,5 @@ phases:
       - echo Build completed successfully
 artifacts:
   files:
-    - target/spring-boot-aws.jar
+    - target/spring-boot.jar
   discard-paths: yes
