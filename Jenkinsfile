@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Checkout SCM') {
             steps {
-                git 'https://github.com/sachinpachpute/spring-boot.git',
+                git url: 'https://github.com/sachinpachpute/spring-boot.git',
                  branch:'master'
             }
         }
