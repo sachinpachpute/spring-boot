@@ -28,7 +28,7 @@ pipeline {
                 sh "docker build -t ${IMAGE_NAME}:latest ."
             }
         }
-        stage('Push Docker Image') {
+        /* stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh "docker login -u $username --password $password"
@@ -42,6 +42,6 @@ pipeline {
                 sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
                 sh "docker rmi ${IMAGE_NAME}:latest"
             }
-        }
+        } */
     }
 }
