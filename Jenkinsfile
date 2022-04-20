@@ -28,7 +28,7 @@ pipeline {
                 sh "docker build -t ${IMAGE_NAME}:latest ."
             }
         }
-        stage('Build Docker Image') {
+        stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh "docker login -u $username --password $password"
