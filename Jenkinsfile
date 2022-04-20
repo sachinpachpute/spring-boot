@@ -22,5 +22,26 @@ pipeline {
                  branch:'master'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:{IMAGE_TAG} ."
+                sh "docker build -t ${IMAGE_NAME}:latest ."
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh "docker login -u $username --password $password"
+                    sh "docker push ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    sh "docker push ${IMAGE_NAME}:latest ."
+                }
+            }
+        }
+        stage('Delete Docker Image') {
+            steps {
+                sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker rmi ${IMAGE_NAME}:latest"
+            }
+        }
     }
 }
