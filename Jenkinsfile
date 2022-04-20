@@ -22,6 +22,11 @@ pipeline {
                  branch:'master'
             }
         }
+        stage('MVN Pachpute') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
