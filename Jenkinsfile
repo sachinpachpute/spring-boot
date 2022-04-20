@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.8.5'
+    }
+
     environment {
         DOCKERHUB_USERNAME = "sachinpachpute"
         APP_NAME = "gitops-demo-app"
@@ -22,7 +26,7 @@ pipeline {
                  branch:'master'
             }
         }
-        stage('MVN Pachpute') {
+        stage('MVN package') {
             steps {
                 sh 'mvn clean package'
             }
