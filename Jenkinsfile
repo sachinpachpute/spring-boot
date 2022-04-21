@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+      maven '3.8.5'
+    }
+
     environment {
         DOCKERHUB_USERNAME = "sachinpachpute"
         APP_NAME = "gitops-demo-app"
@@ -20,6 +24,11 @@ pipeline {
             steps {
                 git url: 'https://github.com/sachinpachpute/spring-boot.git',
                  branch:'master'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                sh "maven clean package"
             }
         }
         stage('Build Docker Image') {
