@@ -52,5 +52,24 @@ pipeline {
                 sh "docker rmi ${IMAGE_NAME}:latest"
             }
         }
+        stage('Updating kubernetes deployment file') {
+            steps {
+                sh "cat deployment.yml"
+                sh "sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yml"
+                sh "cat deployment.yml"
+            }
+        }
+        stage('Push the changed deployment file to Git') {
+            steps {
+                sh """
+                git config --global user.name "sachinpachpute"
+                git config --global user.email "sachin.pachpute@gmail.com"
+                git add deployment.yml
+                git commit -m 'update the deployment file' """
+                withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh "git push http://$username:$password@github.com/sachinpachpute/spring-boot.git master"
+                }
+            }
+        }
     }
 }
