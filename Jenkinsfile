@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         DOCKERHUB_USERNAME = "sachinpachpute"
-        APP_NAME = "gitops-demo-app"
+        APP_NAME = "spring-boot"
         IMAGE_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
         REGISTRY_CREDS = 'dockerhub'
