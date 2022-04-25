@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-app-container
-          image: sachinpachpute/spring-boot:8
+          image: sachinpachpute/spring-boot:9
           ports:
             - containerPort: 5000
 ---
