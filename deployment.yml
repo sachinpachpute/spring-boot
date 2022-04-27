@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-boot
-          image: spring-boot-k8s:v1 # Image that will be used to containers in the cluster
+          image: spring-boot-k8s:11
           ports:
             - containerPort: 80 # The port that the container is running on in the cluster
 ---
